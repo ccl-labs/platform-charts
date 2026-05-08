@@ -11,7 +11,9 @@
 {{ include "common-app.hpa" . }}
 ---
 {{ include "common-app.serviceMonitor" . }}
+{{- if .Values.db.enabled }}
 ---
 {{ include "common-db.cluster" . }}
 ---
 {{ include "common-db.scheduledBackup" . }}
+{{- end }}

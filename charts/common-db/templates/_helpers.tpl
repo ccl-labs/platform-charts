@@ -1,4 +1,5 @@
 {{- define "common-db.cluster" -}}
+{{- if .Values.db.enabled -}}
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -43,9 +44,10 @@ spec:
     retentionPolicy: "7d"
   {{- end }}
 {{- end }}
+{{- end }}
 
 {{- define "common-db.scheduledBackup" -}}
-{{- if .Values.db.backup.enabled }}
+{{- if and .Values.db.enabled .Values.db.backup.enabled }}
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:

@@ -36,6 +36,7 @@ serviceMonitor:
   path: /metrics
   interval: 30s
 db:
+  enabled: true
   name: sample-backend-db
   instances: 2
   postgresVersion: 17

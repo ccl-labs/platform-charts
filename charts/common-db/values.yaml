@@ -1,4 +1,5 @@
 db:
+  enabled: true
   # DB名（アプリ名と合わせることを推奨）
   name: ""
   # PostgreSQLインスタンス数（1=シングル、2以上=HA構成）
