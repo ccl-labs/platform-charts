@@ -1,0 +1,41 @@
+app:
+  name: ""
+  version: "latest"
+image:
+  repository: ""
+  tag: latest
+  pullPolicy: IfNotPresent
+  pullSecretName: ghcr-pull-secret
+replicaCount: 1
+containerPort: 80
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
+probes:
+  liveness:
+    path: /
+    initialDelaySeconds: 5
+    periodSeconds: 10
+  readiness:
+    path: /
+    initialDelaySeconds: 5
+    periodSeconds: 5
+ingress:
+  enabled: false
+  host: ""
+hpa:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 70
+serviceMonitor:
+  enabled: false
+  path: /metrics
+  interval: 30s
+db:
+  name: ""
+env: []

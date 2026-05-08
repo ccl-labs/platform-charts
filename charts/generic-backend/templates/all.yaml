@@ -1,0 +1,19 @@
+{{- if .Values.rollout.enabled }}
+{{ include "common-app.rollout" . }}
+{{- else }}
+{{ include "common-app.deployment" . }}
+{{- end }}
+---
+{{ include "common-app.service" . }}
+---
+{{ include "common-app.ingress" . }}
+---
+{{ include "common-app.hpa" . }}
+---
+{{ include "common-app.serviceMonitor" . }}
+{{- if .Values.db.enabled }}
+---
+{{ include "common-db.cluster" . }}
+---
+{{ include "common-db.scheduledBackup" . }}
+{{- end }}

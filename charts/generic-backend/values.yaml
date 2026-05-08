@@ -1,0 +1,66 @@
+app:
+  name: ""
+  version: "latest"
+image:
+  repository: ""
+  tag: latest
+  pullPolicy: IfNotPresent
+  pullSecretName: ghcr-pull-secret
+replicaCount: 1
+containerPort: 8000
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+probes:
+  liveness:
+    path: /health
+    initialDelaySeconds: 10
+    periodSeconds: 10
+  readiness:
+    path: /health
+    initialDelaySeconds: 5
+    periodSeconds: 5
+ingress:
+  enabled: false
+  host: ""
+hpa:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 70
+serviceMonitor:
+  enabled: false
+  path: /metrics
+  interval: 30s
+rollout:
+  enabled: false
+  canary:
+    steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 100
+db:
+  enabled: true
+  name: ""
+  instances: 1
+  postgresVersion: 17
+  storageSize: 1Gi
+  database: app
+  owner: app
+  backup:
+    enabled: false
+    endpointURL: "http://minio.minio.svc.cluster.local:9000"
+    bucketName: "cnpg-backup"
+    secretName: "minio-backup-secret"
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+env: []
