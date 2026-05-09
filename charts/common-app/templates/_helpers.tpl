@@ -38,7 +38,7 @@ spec:
             - containerPort: {{ .Values.containerPort }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- if .Values.db.name }}
+          {{- if .Values.db.enabled }}
           env:
             - name: DB_HOST
               valueFrom:
@@ -210,7 +210,7 @@ spec:
             - containerPort: {{ .Values.containerPort }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- if .Values.db.name }}
+          {{- if .Values.db.enabled }}
           env:
             - name: DB_HOST
               valueFrom:
