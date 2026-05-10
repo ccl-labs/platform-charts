@@ -43,6 +43,8 @@ spec:
         compression: gzip
     retentionPolicy: "7d"
   {{- end }}
+  monitoring:
+    enablePodMonitor: {{ .Values.db.monitoring.enablePodMonitor }}
 {{- end }}
 {{- end }}
 

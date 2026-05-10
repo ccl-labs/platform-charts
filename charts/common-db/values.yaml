@@ -19,6 +19,9 @@ db:
     bucketName: "cnpg-backup"
     # MinIO認証情報を持つSecretの名前
     secretName: "minio-backup-secret"
+  # モニタリング設定
+  monitoring:
+    enablePodMonitor: false
   # リソース設定
   resources:
     requests:
