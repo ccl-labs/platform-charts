@@ -21,6 +21,9 @@ spec:
 
   storage:
     size: {{ .Values.db.storageSize }}
+    {{- if .Values.db.storageClassName }}
+    storageClass: {{ .Values.db.storageClassName }}
+    {{- end }}
 
   resources:
     {{- toYaml .Values.db.resources | nindent 4 }}

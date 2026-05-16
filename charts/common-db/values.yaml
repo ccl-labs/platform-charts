@@ -8,6 +8,8 @@ db:
   postgresVersion: 17
   # ストレージサイズ
   storageSize: 1Gi
+  # ストレージクラス（未指定の場合はデフォルト StorageClass を使用）
+  storageClassName: ""
   # DB初期化設定
   database: app
   owner: app
